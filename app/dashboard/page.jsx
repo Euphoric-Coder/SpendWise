@@ -1,9 +1,11 @@
-import React from 'react'
+import { UserButton } from "@clerk/nextjs";
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
-  )
-}
+    <div>
+      <UserButton />
+    </div>
+  );
+};
 
-export default Dashboard
+export default Dashboard;

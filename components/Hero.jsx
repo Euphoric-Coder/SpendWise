@@ -3,6 +3,7 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -92,11 +93,13 @@ const Hero = () => {
             insights to help you save more and spend wisely.
           </p>
 
-          {/* Call to Action Button */}
+          {/* Redirecting to the Dashboard if logged in */}
           <div className="mt-6">
-            <Button className="px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 text-base sm:text-lg md:text-xl font-bold text-white rounded-2xl shadow-xl bg-gradient-to-r from-pink-500 via-yellow-500 to-green-500 hover:from-green-500 hover:via-teal-500 hover:to-blue-500 transition-transform transform hover:scale-105 active:scale-95 duration-300">
-              Start Tracking Expenses
-            </Button>
+            <Link href={"/dashboard"}>
+              <Button className="px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 text-base sm:text-lg md:text-xl font-bold text-white rounded-2xl shadow-xl bg-gradient-to-r from-pink-500 via-yellow-500 to-green-500 hover:from-green-500 hover:via-teal-500 hover:to-blue-500 transition-transform transform hover:scale-105 active:scale-95 duration-300">
+                Start Tracking Expenses
+              </Button>
+            </Link>
           </div>
         </div>
 
