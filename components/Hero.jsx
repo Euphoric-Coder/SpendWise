@@ -4,6 +4,7 @@ import React from "react";
 import Typewriter from "typewriter-effect";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const Hero = () => {
   return (
@@ -20,9 +21,11 @@ const Hero = () => {
       {/* Center-Aligned Title Section at the Top */}
       <header className="text-center space-y-4 py-6 relative w-full flex flex-col items-center justify-center">
         <div className="flex items-center justify-center gap-3 transition-transform transform duration-500 ease-in-out hover:scale-105">
-          <img
+          <Image
             src="/wallet.png" // Replace with an appropriate icon for SpendWise
             alt="SpendWise Icon"
+            width={500}
+            height={400}
             className="w-10 sm:w-12 md:w-14 lg:w-16"
           />
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-teal-400 hover:from-teal-500 hover:via-indigo-500 hover:to-pink-500">

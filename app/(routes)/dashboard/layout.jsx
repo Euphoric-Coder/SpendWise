@@ -1,7 +1,32 @@
-import DashboardHeader from "@/components/DashboardHeader";
+"use client";
+
+import { eq } from "drizzle-orm";
+import { db } from "@/utils/dbConfig";
+import { Budgets } from "@/utils/schema";
+import { useUser } from "@clerk/nextjs";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import DashboardSideNavbar from "@/components/DashboardSideNavbar";
+import DashboardHeader from "@/components/DashboardHeader";
 
 const DashboardLayout = ({ children }) => {
+  const { user } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    checkUserBudgets();
+  }, []);
+
+  const checkUserBudgets = async () => {
+    const result = await db
+      .select()
+      .from(Budgets)
+      .where(eq(Budgets.createdBy, user?.primaryEmailAddress.emailAddress));
+
+    if (result?.length == 0) {
+      router.replace("/dashboard/budgets");
+    }
+  };
   return (
     <div className="flex h-screen">
       {/* Sidebar with increased width */}

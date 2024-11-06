@@ -8,7 +8,7 @@ const DashboardHeader = () => {
             Search bar
         </div>
         <div>
-            <UserButton />
+          <UserButton />
         </div>
     </div>
   )

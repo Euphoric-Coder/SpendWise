@@ -5,7 +5,6 @@ import { LayoutGrid, PiggyBank, ReceiptText, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 const DashboardSideNavbar = () => {
   const { openUserProfile } = useClerk();
@@ -38,8 +37,6 @@ const DashboardSideNavbar = () => {
   ];
 
   const path = usePathname();
-
-  // useEffect(() => {}, [path]);
 
   return (
     <div className="h-screen p-6 border shadow-2xl bg-gradient-to-b from-white via-blue-50 to-indigo-50 rounded-3xl flex flex-col items-center space-y-8 font-mono text-gray-800">
