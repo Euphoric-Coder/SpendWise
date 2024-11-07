@@ -4,29 +4,46 @@ import { eq } from "drizzle-orm";
 import { db } from "@/utils/dbConfig";
 import { Budgets } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import DashboardSideNavbar from "@/components/DashboardSideNavbar";
 import DashboardHeader from "@/components/DashboardHeader";
 
 const DashboardLayout = ({ children }) => {
   const { user } = useUser();
   const router = useRouter();
+  const pathname = usePathname();
+  const [checking, setChecking] = useState(true);
 
+  // Run the budget check directly within the component logic
   useEffect(() => {
+    const checkUserBudgets = async () => {
+      if (pathname === "/dashboard") {
+        const result = await db
+          .select()
+          .from(Budgets)
+          .where(
+            eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress)
+          );
+
+        if (result?.length === 0) {
+          router.replace("/dashboard/budgets");
+        } else {
+          setChecking(false); // Allow rendering if the check passes
+        }
+      } else {
+        setChecking(false); // Allow rendering if not on the target path
+      }
+    };
+
     checkUserBudgets();
-  }, []);
+  }, [pathname, user, router]);
 
-  const checkUserBudgets = async () => {
-    const result = await db
-      .select()
-      .from(Budgets)
-      .where(eq(Budgets.createdBy, user?.primaryEmailAddress.emailAddress));
+  // Render loading state if check is still in progress
+  if (checking) {
+    return <div>Loading...</div>;
+  }
 
-    if (result?.length == 0) {
-      router.replace("/dashboard/budgets");
-    }
-  };
   return (
     <div className="flex h-screen">
       {/* Sidebar with increased width */}

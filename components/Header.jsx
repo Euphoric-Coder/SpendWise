@@ -5,6 +5,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import UserMenu from "./UserButton";
 
 const Header = () => {
   const { user, isSignedIn } = useUser();
@@ -19,7 +20,7 @@ const Header = () => {
           height={100}
         />
       </Link>
-      {isSignedIn ? <UserButton /> : 
+      {isSignedIn ? <UserMenu /> : 
       <Link href={"/sign-in"}>
       <Button>Get Started</Button>
       </Link>}

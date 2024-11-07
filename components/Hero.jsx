@@ -5,8 +5,13 @@ import Typewriter from "typewriter-effect";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 const Hero = () => {
+  const click=()=>{
+    redirect('/dashboard')
+  }
+
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-white via-blue-50 to-indigo-50 text-gray-900 flex flex-col items-center px-5 py-10 space-y-8 overflow-hidden">
       {/* Floating Pulsing Circles */}
@@ -98,11 +103,11 @@ const Hero = () => {
 
           {/* Redirecting to the Dashboard if logged in */}
           <div className="mt-6">
-            <Link href={"/dashboard"}>
-              <Button className="px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 text-base sm:text-lg md:text-xl font-bold text-white rounded-2xl shadow-xl bg-gradient-to-r from-pink-500 via-yellow-500 to-green-500 hover:from-green-500 hover:via-teal-500 hover:to-blue-500 transition-transform transform hover:scale-105 active:scale-95 duration-300">
+            {/* <Link href={"/dashboard"}> */}
+              <Button onClick={click} className="px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 text-base sm:text-lg md:text-xl font-bold text-white rounded-2xl shadow-xl bg-gradient-to-r from-pink-500 via-yellow-500 to-green-500 hover:from-green-500 hover:via-teal-500 hover:to-blue-500 transition-transform transform hover:scale-105 active:scale-95 duration-300">
                 Start Tracking Expenses
               </Button>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
 
